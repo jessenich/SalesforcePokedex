@@ -1,0 +1,61 @@
+<!-- sldsValidatorIgnore -->
+
+<template>
+    <div class="slds-grid slds-grid_vertical">
+        <div class="slds-col slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-2 slds-p-around_medium">
+                <template if:true={pokemon}>
+                    <lightning-combobox
+                            class="custom-combobox"
+                            name="pokemonCb"
+                            label="Pokemon"
+                            value={selectedPokemon}
+                            placeholder="Select Pokemon"
+                            options={fieldInfo}
+                            onchange={onPokemonSelectionChanged}
+                            required>
+                    </lightning-combobox>
+                </template>
+            </div>
+
+            <div class="slds-col slds-p-around_medium">
+                <template if:true={sprites}>
+                    <lightning-carousel
+                        class="slds-float_right custom-image-carousel">
+                        <lightning-carousel-image
+                            src={sprites.front_default}
+                            header="Front"
+                            description=""
+                        ></lightning-carousel-image>
+
+                        <lightning-carousel-image
+                            src={sprites.back_default}
+                            header="Back"
+                            description=""
+                        ></lightning-carousel-image>
+                    </lightning-carousel>
+                </template>
+            </div>
+        </div>
+
+        
+        <div class="slds-col slds-p-around_medium"> 
+                <template if:true={moves}>
+                    <lightning-datatable
+                        key-field="id"
+                        columns={columns}
+                        sorted-by={sortBy}
+                        sorted-direction={sortDir}
+                        onsort={onDatatableSort}
+                        data={moves}
+                    ></lightning-datatable>
+                </template>
+            
+        </div>
+
+        <template if:false={pokemon}>
+            No data available.
+        </template>
+        
+    </div>
+</template>
