@@ -1,6 +1,4 @@
-public with sharing class PokeApiClient {
-    private static final String POKE_API_BASE_URL = 'https://pokeapi.co/api/v2/';
-    
+public with sharing class PokeApiClient {    
     private Http http;
 
     public PokeApiClient() {
@@ -13,7 +11,7 @@ public with sharing class PokeApiClient {
     
     public PokemonResponse getPokemonCollection(Integer offset, Integer count) {
         HttpRequest req = new HttpRequest();
-        req.setEndpoint(POKE_API_BASE_URL + 'pokemon?offset=' + offset + '&limit=' + count);
+        req.setEndpoint('callout:PokeApiUrl/pokemon?offset=' + offset + '&limit=' + count); 
         req.setMethod('GET');
 
         HttpResponse res = this.http.send(req);
